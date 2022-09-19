@@ -13,9 +13,9 @@ args = parser.parse_args()
 
 np.show_config()
 print(f'n_mats: {args.n} order: {args.order}')
-shape = (args.n, args.order, args.order)
+shape = (args.n + 1, args.order, args.order)
 dmats = np.random.rand(*shape) + 1j*np.random.rand(*shape)
-evals = np.zeros((dmats.shape[0], dmats.shape[1]), dtype=np.float64)
+evals = np.zeros((dmats.shape[0]-1, dmats.shape[1]), dtype=np.float64)
 
 segfault.diagonalise(evals, dmats, 1)
 
