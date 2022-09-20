@@ -26,8 +26,8 @@ jobs:
         if: startsWith(matrix.np_install, 'mkl')
         shell: bash -l {0}
         run: |
-          conda install -y numpy
-          python -m pip install -vvv .
+          conda install -y numpy scipy
+          python -m pip install --upgrade-strategy only-if-needed -vvv .
       - name: Run segfaulting code on MacOS
         if: startsWith(matrix.os, 'macos')
         shell: bash -l {0}
