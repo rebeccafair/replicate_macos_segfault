@@ -43,7 +43,7 @@ static PyObject *diagonalise(PyObject *self, PyObject *args) {
     }
 
     // Point to Python array data
-    n_mats = PyArray_DIMS(py_evals)[0];
+    n_mats = PyArray_DIMS(py_dmats)[0];
     mat_order = PyArray_DIMS(py_dmats)[1];
     evals = (double*) PyArray_DATA(py_evals);
     dmats = (double*) PyArray_DATA(py_dmats);

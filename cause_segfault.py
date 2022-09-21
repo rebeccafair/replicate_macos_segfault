@@ -12,12 +12,15 @@ parser.add_argument('--order', type=int, default=24)
 args = parser.parse_args()
 
 np.show_config()
-print(f'n_mats: {args.n} order: {args.order}')
+print(f'n_mats: {args.n} order: {args.order}', flush=True)
 shape = (args.n, args.order, args.order)
 np.random.seed(0)
 dmats = np.random.rand(*shape) + 1j*np.random.rand(*shape)
 evals = np.zeros((dmats.shape[0], dmats.shape[1]), dtype=np.float64)
 
-segfault.diagonalise(evals, dmats, 1)
+mid_idx = int(np.ceil(args.n/2))
+segfault.diagonalise(evals, dmats[:mid_idx], 1)
+print('Diagonalised first part', flush=True)
+segfault.diagonalise(evals, dmats[mid_idx:], 1)
 
 print('Done!')
