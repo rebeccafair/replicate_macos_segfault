@@ -21,17 +21,17 @@ int diagonalise_dyn_mat_zheevd(const int order,
     int info;
 
     // Query vars
-    double lworkopt, lrworkopt;
+    double lworkopt[2], lrworkopt;
     int liworkopt;
 
     // Workspace query
-    (*zheevdptr)(&jobz, &uplo, &mat_order, dyn_mat, &lda, eigenvalues, &lworkopt, &lwork,
+    (*zheevdptr)(&jobz, &uplo, &mat_order, dyn_mat, &lda, eigenvalues, lworkopt, &lwork,
         &lrworkopt, &lrwork, &liworkopt, &liwork, &info);
     if (info != 0) {
         printf("INFO: Zheevd failed querying workspace with info %i", info);
         return info;
     }
-    lwork = (int)lworkopt;
+    lwork = (int)lworkopt[0];
     lrwork = (int)lrworkopt;
     liwork = liworkopt;
 
