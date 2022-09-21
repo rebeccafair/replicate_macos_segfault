@@ -18,8 +18,6 @@ np.random.seed(0)
 dmats = np.random.rand(*shape) + 1j*np.random.rand(*shape)
 evals = np.zeros((dmats.shape[0], dmats.shape[1]), dtype=np.float64)
 
-segfault.diagonalise(evals, dmats[:-1], 1)
-print('Diagonalised first part', flush=True)
 segfault.diagonalise(evals, dmats[-1:], 1)
 
 print('Done!')
