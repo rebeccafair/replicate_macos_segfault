@@ -15,6 +15,8 @@ np.show_config()
 print(f'n_mats: {args.n} order: {args.order}')
 shape = (args.n, args.order, args.order)
 dmats = np.random.rand(*shape) + 1j*np.random.rand(*shape)
+diag_idx = (slice(None), *np.diag_indices(args.order))
+dmats[diag_idx] = np.real(dmats[diag_idx])
 evals = np.zeros((dmats.shape[0], dmats.shape[1]), dtype=np.float64)
 
 segfault.diagonalise(evals, dmats, 1)
